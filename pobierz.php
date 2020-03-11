@@ -4,18 +4,25 @@ if (strlen($_SERVER["QUERY_STRING"]) != 0 ){
 
     $nazwa = $_SERVER["QUERY_STRING"];
     
-    $pobierz = new pobierz();
+    $config = parse_ini_file("config.ini",true);  
+    
+    $pobierz = new pobierz($config['loginData']['login'], $config['loginData']['password']) ;
     $pobierz ->$nazwa();
 }
 
-class pobierz {    
+class pobierz {
+              
+    private $daneLogowania;
     
-    private $daneLogowania = array(
-                'ws-security-login' => 'YOUR LOGIN',
-                'ws-security-password' => 'YOUR PASSWORD',
-                'instance' => 'production'
-              );
+    public function __construct ($login, $password) {
     
+        $this->daneLogowania = [
+                    "ws-security-login" => $login,
+                    'ws-security-password' => $password,
+                    'instance' => 'production'
+                  ];
+    }
+  
     public function getWojewodztwa(){
     
         require_once ('teryt/TERYT_Webservices.php');
