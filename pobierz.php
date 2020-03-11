@@ -11,8 +11,8 @@ if (strlen($_SERVER["QUERY_STRING"]) != 0 ){
 class pobierz {    
     
     private $daneLogowania = array(
-                'ws-security-login' => 'operon.pl',
-                'ws-security-password' => 'G45*!c532T',
+                'ws-security-login' => 'YOUR LOGIN',
+                'ws-security-password' => 'YOUR PASSWORD',
                 'instance' => 'production'
               );
     
